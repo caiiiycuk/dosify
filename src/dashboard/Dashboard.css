@@ -2,3 +2,19 @@
     width: 100%;
     height: 100%;
 }
+
+.dashboard {
+    width: min-content;
+}
+
+.instructions-ol li:first-child {
+    margin-top: 0px;
+}
+
+.instructions-ol li {
+    margin-top: 20px;
+}
+
+.instructions-control {
+    margin-top: 10px;
+}
