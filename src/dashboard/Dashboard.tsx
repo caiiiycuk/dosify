@@ -1,7 +1,9 @@
 import { FileInput, H2, ProgressBar, Intent, H1 } from "@blueprintjs/core";
 
 import React, { useState } from "react";
-import JsDos from "../jsdos/jsdos";
+import JsDos from "../jsdos/JsDos";
+
+import "./Dashboard.css";
 
 const Dashboard: React.FC = () => {
     const [reader, setReader] = useState<FileReader|null>(null);
@@ -41,7 +43,9 @@ const Dashboard: React.FC = () => {
         return <div>
             <FileInput text="Choose file..." onInputChange={onInputChange} />
             <H1>Loaded</H1>
-            <JsDos url={url as string} />
+            <div className="js-dos-wrapper">
+                <JsDos url={url as string} />
+            </div>
         </div>;
     }
 
