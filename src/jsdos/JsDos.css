@@ -1,4 +1,10 @@
-.js-dos-canvas {
+.jsdos-viewport {
+    position: relative;
     width: 100%;
     height: 100%;
+    overflow-x: hidden;
+}
+
+.js-dos-canvas {
+    position: absolute;
 }

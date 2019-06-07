@@ -134,20 +134,24 @@ const Dashboard: React.FC = () => {
         </ButtonGroup>
     </li>;
 
-    const jsdos = <li style={ready ? {} : {display: "none"}}>
-        Now PLAY!
-        <JsDos url={url + ""}/>
-    </li>
+    const jsdos = ready ?
+        <JsDos url={url + ""} args={(argsLine + "").split(", ").map((arg) => arg.trim().substr(1, arg.length - 2))}/> :
+        <div></div>;
 
-    return <Flexbox flexDirection="column" className="dashboard">
+    return <Flexbox flexDirection="column" className="dashboard" style={ready ? {width: "100%"} : {}}>
         <H1>Dosify me!</H1>
-        <H3>Instructions</H3>
-        <ol className="instructions-ol">
-            {chooseFileControl}
-            {executablesControl}
-            {argsControl}
+        <div style={ready ? {display: "none"} : {}}>
+            <H3>Instructions</H3>
+            <ol className="instructions-ol">
+                {chooseFileControl}
+                {executablesControl}
+                {argsControl}
+            </ol>
+        </div>
+        <Flexbox flexGrow={1} flexDirection="column" style={ready ? {} : {display: "none"}}>
+            <H3>Now <span style={{color: "#D9822B", fontWeight: "bold", borderBottom: "2px solid #DB3737"}}>PLAY!</span></H3>
             {jsdos}
-        </ol>
+        </Flexbox>
     </Flexbox>;
 };
 

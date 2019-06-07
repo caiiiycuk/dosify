@@ -1,6 +1,7 @@
 {
   "name": "dosify",
   "version": "0.1.0",
+  "homepage": "https://dosify.me",
   "dependencies": {
     "@blueprintjs/core": "^3.15.1",
     "@types/jest": "24.0.13",
@@ -38,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^2.0.1",
     "tslint": "^5.17.0"
   }
 }

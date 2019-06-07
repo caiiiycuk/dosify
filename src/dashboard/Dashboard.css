@@ -1,10 +1,7 @@
-.js-dos-wrapper {
-    width: 100%;
-    height: 100%;
-}
-
 .dashboard {
     width: min-content;
+    height: 100%;
+    overflow: hidden;
 }
 
 .instructions-ol li:first-child {
@@ -17,4 +14,8 @@
 
 .instructions-control {
     margin-top: 10px;
+}
+
+.dosbox-container {
+    flex-grow: 1;
 }
