@@ -1,10 +1,17 @@
-.jsdos-viewport {
-    position: relative;
+.jsdos-resize-sensor {
     width: 100%;
     height: 100%;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
-.js-dos-canvas {
+.jsdos-viewport {
+    position: relative;
+}
+
+.jsdos-viewport .dosbox-container, .jsdos-viewport .dosbox-container canvas {
     position: absolute;
+    left: 0 !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
 }

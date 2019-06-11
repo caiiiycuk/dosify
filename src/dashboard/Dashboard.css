@@ -2,6 +2,7 @@
     width: min-content;
     height: 100%;
     overflow: hidden;
+    padding: 2em;
 }
 
 .instructions-ol li:first-child {

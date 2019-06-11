@@ -1,11 +1,10 @@
-import { FileInput, H2, ProgressBar, Intent, H1, H3, Spinner, Tree, ITreeNode, Classes, Icon, Button, ButtonGroup } from "@blueprintjs/core";
+import { FileInput, Intent, H1, H3, Spinner, Tree, ITreeNode, Classes, Button, ButtonGroup, H4 } from "@blueprintjs/core";
 
 import React, { useState, useEffect } from "react";
 import JsDos from "../jsdos/JsDos";
 
 import Flexbox from 'flexbox-react';
 import "./Dashboard.css";
-import { REDO, PLAY } from "@blueprintjs/icons/lib/esm/generated/iconContents";
 import ZipExecutables from "../core/ZipExplorer";
 import { IconNames } from "@blueprintjs/icons";
 
@@ -104,7 +103,7 @@ const Dashboard: React.FC = () => {
         &nbsp;
         <span style={{color: "#D9822B", fontWeight: "bold", borderBottom: "2px solid #DB3737"}}>ZIP</span>
         &nbsp;
-        archive of program
+        archive of program (try&nbsp;<a href="/digger.zip">digger.zip</a>)
         <Flexbox className="instructions-control" flexDirection="row">
             <FileInput disabled={reader !== null} text="Choose file..." onInputChange={onInputChange} />
             &nbsp;&nbsp;
@@ -139,9 +138,10 @@ const Dashboard: React.FC = () => {
         <div></div>;
 
     return <Flexbox flexDirection="column" className="dashboard" style={ready ? {width: "100%"} : {}}>
-        <H1>Dosify me!</H1>
+        <H1>Dosify&nbsp;me!</H1>
+        <H4>Try&nbsp;your&nbsp;favorite&nbsp;DOS&nbsp;game&nbsp;in&nbsp;browser</H4>
         <div style={ready ? {display: "none"} : {}}>
-            <H3>Instructions</H3>
+            <p>Instructions</p>
             <ol className="instructions-ol">
                 {chooseFileControl}
                 {executablesControl}

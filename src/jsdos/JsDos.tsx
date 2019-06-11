@@ -52,7 +52,6 @@ const JsDos = (props: IJsDosProps) => {
                 newHeight = newWidth / aspect;
             }
 
-            console.log("recommended size", newWidth, newHeight, "in", entries[entries.length - 1].contentRect.height);
             setStyle({
                 left: ((maxWidth - newWidth)) / 2 + "px",
                 top: ((maxHeight - newHeight)) / 2 + "px",
@@ -63,8 +62,10 @@ const JsDos = (props: IJsDosProps) => {
     };
 
     return <ResizeSensor onResize={onResize}>
-        <div className="jsdos-viewport">
-            <canvas style={style} className="js-dos-canvas" ref={ref} />
+        <div className="jsdos-resize-sensor">
+            <div style={style} className="jsdos-viewport">
+                <canvas  className="js-dos-canvas" ref={ref} />
+            </div>
         </div>
     </ResizeSensor>;
 }
