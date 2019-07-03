@@ -1,37 +1,35 @@
 import React, { useRef, useEffect, useState } from "react";
-import { DosFactory } from "js-dos";
+import { DosFactory, DosRuntime } from "js-dos";
 
 import "./JsDos.css";
 import { ResizeSensor, IResizeEntry } from "@blueprintjs/core";
+import { DosCommandInterface } from "js-dos/dist/typescript/js-dos-ci";
 
 require("js-dos");
 const Dos = (window as any).Dos as DosFactory;
 
 export interface IJsDosProps {
-    url: string;
-    args: string[];
+    onRuntime: (runtime: DosRuntime) => Promise<DosCommandInterface>;
 }
 
 const JsDos = (props: IJsDosProps) => {
     const ref = useRef<HTMLCanvasElement>(null);
     const [style, setStyle] = useState<React.CSSProperties>({});
-    console.log("ARGS!", props.args);
 
     useEffect(() => {
         if (ref !== null) {
-            const ciPromise = Dos(ref.current as HTMLCanvasElement, {
+            console.warn("Use effect entered with", [ref/*, props.url, props.args*/]);
+            const runtimePromise = Dos(ref.current as HTMLCanvasElement, {
                 wdosboxUrl: "/wdosbox/wdosbox.js",
-            }).then((runtime) => {
-                return runtime.fs.extract(props.url).then(() => {
-                    return runtime.main(props.args);
-                });
             });
 
+            const ciPromise = runtimePromise.then(props.onRuntime);
             return () => {
                 ciPromise.then(ci => ci.exit());
             };
         }
-    }, [ref, props.url, props.args]);
+    // eslint-disable-next-line
+    }, [ref/*, props.url, props.args*/]);
 
     function onResize(entries: IResizeEntry[]) {
         if (entries.length > 0) {

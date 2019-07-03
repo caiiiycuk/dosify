@@ -7,7 +7,8 @@ import Flexbox from 'flexbox-react';
 import "./Dashboard.css";
 import ZipExecutables from "../core/ZipExplorer";
 import { IconNames } from "@blueprintjs/icons";
-
+import { DosCommandInterface } from "js-dos/dist/typescript/js-dos-ci";
+import SnapshotControl from "./SnapshotControl";
 
 const Dashboard: React.FC = () => {
     const [error, setError] = useState<string>("");
@@ -20,6 +21,8 @@ const Dashboard: React.FC = () => {
     const [argsLine, setArgsLine] = useState<string | null>(null);
 
     const [ready, setReady] = useState<boolean>(false);
+
+    const [commandInterface, setCommandInterface] = useState<DosCommandInterface | null>(null);
 
     useEffect(() => {
         const fileName = executable;
@@ -133,9 +136,19 @@ const Dashboard: React.FC = () => {
         </ButtonGroup>
     </li>;
 
-    const jsdos = ready ?
-        <JsDos url={url + ""} args={(argsLine + "").split(", ").map((arg) => arg.trim().substr(1, arg.length - 2))}/> :
-        <div></div>;
+    const jsdos = 
+        ready ?
+            <JsDos 
+                onRuntime={(runtime) => {
+                    const args = (argsLine + "").split(", ").map((arg) => arg.trim().substr(1, arg.length - 2));
+                    const ciPromise = runtime.fs.extract(url + "").then(() => {
+                        return runtime.main(args);
+                    });
+
+                    ciPromise.then(setCommandInterface);
+                    return ciPromise;
+                }}
+            /> : <div></div>;
 
     return <Flexbox flexDirection="column" className="dashboard" style={ready ? {width: "100%"} : {}}>
         <H1>Dosify&nbsp;me!</H1>
@@ -150,6 +163,7 @@ const Dashboard: React.FC = () => {
         </div>
         <Flexbox flexGrow={1} flexDirection="column" style={ready ? {} : {display: "none"}}>
             <H3>Now <span style={{color: "#D9822B", fontWeight: "bold", borderBottom: "2px solid #DB3737"}}>PLAY!</span></H3>
+            {/* commandInterface !== null ? <SnapshotControl commandInterface={commandInterface as DosCommandInterface} /> : ""*/}
             {jsdos}
         </Flexbox>
     </Flexbox>;
