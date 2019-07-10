@@ -49,6 +49,9 @@ function takeMemRanges(mem: Uint8Array, minRangeInterval: number = 8): IMemRange
 
 export function heapsnapshot(module: any, callback: (snapshot: ArrayBuffer) => void) {
     module.onglobals = (...globals: any[]) => {
+        const time = Date.now();
+        globals.push(time);
+
         const globalsCopy = new TextEncoder().encode(JSON.stringify(globals));
 
         const mem = module.HEAPU8;
@@ -85,13 +88,15 @@ export function heapsnapshot(module: any, callback: (snapshot: ArrayBuffer) => v
     module.asm.globalsread();
 }
 
-export function heaprestore(module: any, buffer: ArrayBuffer) {
+export function heaprestore(module: any, buffer: ArrayBuffer): number {
     const snapshot = new Uint8Array(buffer);
     const i32View = new Uint32Array(buffer);
 
     const globalsArray = snapshot.subarray(4, 4 + i32View[0]);
-    const globals = JSON.parse(new TextDecoder("utf-8").decode(globalsArray));
+    const globals: any[] = JSON.parse(new TextDecoder("utf-8").decode(globalsArray));
     const globalsSize = 4 + Math.ceil(i32View[0] / 4) * 4;
+
+    const time: number = globals.pop();
 
     const memRangesOffest = globalsSize / 4;
     const memRangesLength = i32View[memRangesOffest];
@@ -109,6 +114,7 @@ export function heaprestore(module: any, buffer: ArrayBuffer) {
     }
 
     module.asm.globalswrite.apply(null, globals);
+    return time;
 }
 
 export function globalscall(module: any, ...globals: any[]) {

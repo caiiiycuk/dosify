@@ -1,37 +1,57 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { DosCommandInterface } from "js-dos/dist/typescript/js-dos-ci";
-import { Button } from "@blueprintjs/core";
-import { heapsnapshot } from "../core/Snapshot";
+import { Button, ButtonGroup } from "@blueprintjs/core";
+import { heapsnapshot, heaprestore } from "../core/Snapshot";
+import setTime from "../core/TimeMachine";
 
 export interface ISnapshotControlProps {
     commandInterface: DosCommandInterface;
 }
 
 export default function SnapshotControl(props: ISnapshotControlProps) {
+    const [snapshot, setSnapshot] = useState<ArrayBuffer | null>(null);
+    const module = props.commandInterface.dos as any;
+
+    useEffect(() => {
+        return () => {
+
+        };
+    }, []);
+
     function takeSnapshot() {
-        const module = props.commandInterface.dos as any;
-        
         module.heapOperation = function() {
             delete module.heapOperation;
             heapsnapshot(module, (snapshot) => {
-                console.log("Snapshot size is ", snapshot.byteLength);
+                setSnapshot(snapshot);
+                // console.log("Snapshot size is ", snapshot.byteLength);
 
-                const a = document.createElement("a");
-                a.style.display = "none";
-                document.body.appendChild(a);
+                // const a = document.createElement("a");
+                // a.style.display = "none";
+                // document.body.appendChild(a);
 
-                const blob = new Blob([snapshot], {type: "octet/stream"});
-                const url = URL.createObjectURL(blob);
-                a.href = url;
-                a.download = "dosbox.mem";
-                a.click();
+                // const blob = new Blob([snapshot], {type: "octet/stream"});
+                // const url = URL.createObjectURL(blob);
+                // a.href = url;
+                // a.download = "dosbox.mem";
+                // a.click();
                 
-                URL.revokeObjectURL(url);
+                // URL.revokeObjectURL(url);
             });
         }
     }
 
-    return <div>
-        <Button onClick={takeSnapshot}>Take snapshot</Button>
+    function restoreSnapshot() {
+        module.heapOperation = function() {
+            delete module.heapOperation;
+            const time = heaprestore(module, snapshot as ArrayBuffer);
+            setTime(time);
+        }
+    }
+
+    return <div className="snapshot-control">
+        <ButtonGroup>
+            <Button onClick={takeSnapshot}>Take snapshot</Button>
+            {snapshot === null ? "" : <Button onClick={restoreSnapshot}>Try snapshot</Button>}
+        </ButtonGroup>
     </div>;
 }

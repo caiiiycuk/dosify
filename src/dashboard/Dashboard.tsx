@@ -163,7 +163,7 @@ const Dashboard: React.FC = () => {
         </div>
         <Flexbox flexGrow={1} flexDirection="column" style={ready ? {} : {display: "none"}}>
             <H3>Now <span style={{color: "#D9822B", fontWeight: "bold", borderBottom: "2px solid #DB3737"}}>PLAY!</span></H3>
-            {/* commandInterface !== null ? <SnapshotControl commandInterface={commandInterface as DosCommandInterface} /> : ""*/}
+            {commandInterface !== null ? <SnapshotControl commandInterface={commandInterface as DosCommandInterface} /> : ""}
             {jsdos}
         </Flexbox>
     </Flexbox>;

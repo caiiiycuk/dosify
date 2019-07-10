@@ -20,3 +20,9 @@
 .dosbox-container {
     flex-grow: 1;
 }
+
+.snapshot-control {
+    position: absolute;
+    top: 2em;
+    right: 2em;
+}
