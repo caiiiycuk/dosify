@@ -25,7 +25,10 @@ const JsDos = (props: IJsDosProps) => {
 
             const ciPromise = runtimePromise.then(props.onRuntime);
             return () => {
-                ciPromise.then(ci => ci.exit());
+                ciPromise.then(ci => {
+                    console.log("EXITED");
+                    ci.exit();
+                });
             };
         }
     // eslint-disable-next-line

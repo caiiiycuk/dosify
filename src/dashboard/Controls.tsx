@@ -8,7 +8,7 @@ export interface ISnapshotControlProps {
     commandInterface: DosCommandInterface;
 }
 
-export default function SnapshotControl(props: ISnapshotControlProps) {
+export default function Controls(props: ISnapshotControlProps) {
     const [snapshot, setSnapshot] = useState<ArrayBuffer | null>(null);
     const module = props.commandInterface.dos as any;
 
@@ -48,10 +48,14 @@ export default function SnapshotControl(props: ISnapshotControlProps) {
         }
     }
 
-    return <div className="snapshot-control">
-        <ButtonGroup>
-            <Button onClick={takeSnapshot}>Take snapshot</Button>
-            {snapshot === null ? "" : <Button onClick={restoreSnapshot}>Try snapshot</Button>}
-        </ButtonGroup>
+    return <div className="controls">
+        <Button onClick={() => props.commandInterface.fullscreen()}>Fullscreen</Button>
     </div>;
+
+    // return <div className="snapshot-control">
+    //     <ButtonGroup>
+    //         <Button onClick={takeSnapshot}>Take snapshot</Button>
+    //         {snapshot === null ? "" : <Button onClick={restoreSnapshot}>Try snapshot</Button>}
+    //     </ButtonGroup>
+    // </div>;
 }

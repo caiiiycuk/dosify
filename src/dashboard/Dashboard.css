@@ -21,7 +21,7 @@
     flex-grow: 1;
 }
 
-.snapshot-control {
+.controls {
     position: absolute;
     top: 2em;
     right: 2em;
