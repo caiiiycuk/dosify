@@ -20,7 +20,7 @@ const JsDos = (props: IJsDosProps) => {
     useEffect(() => {
         if (ref !== null) {
             const ciPromise = Dos(ref.current as HTMLCanvasElement, {
-                wdosboxUrl: "/wdosbox/wdosbox.js",
+                wdosboxUrl: "/dosify/wdosbox/wdosbox.js",
             }).then((runtime) => {
                 return runtime.fs.extract(props.url).then(() => {
                     return runtime.main(props.args);

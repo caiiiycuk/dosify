@@ -103,7 +103,7 @@ const Dashboard: React.FC = () => {
         &nbsp;
         <span style={{color: "#D9822B", fontWeight: "bold", borderBottom: "2px solid #DB3737"}}>ZIP</span>
         &nbsp;
-        archive of program (try&nbsp;<a href="/digger.zip">digger.zip</a>)
+        archive of program (try&nbsp;<a href="/dosify/digger.zip">digger.zip</a>)
         <Flexbox className="instructions-control" flexDirection="row">
             <FileInput disabled={reader !== null} text="Choose file..." onInputChange={onInputChange} />
             &nbsp;&nbsp;
