@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/dosify/static/css/main.8a03d28b.chunk.css",
-    "main.js": "/dosify/static/js/main.00839487.chunk.js",
-    "main.js.map": "/dosify/static/js/main.00839487.chunk.js.map",
+    "main.js": "/dosify/static/js/main.7cbaa902.chunk.js",
+    "main.js.map": "/dosify/static/js/main.7cbaa902.chunk.js.map",
     "runtime~main.js": "/dosify/static/js/runtime~main.85a2535d.js",
     "runtime~main.js.map": "/dosify/static/js/runtime~main.85a2535d.js.map",
     "static/css/2.3a030ef9.chunk.css": "/dosify/static/css/2.3a030ef9.chunk.css",
     "static/js/2.daae998b.chunk.js": "/dosify/static/js/2.daae998b.chunk.js",
     "static/js/2.daae998b.chunk.js.map": "/dosify/static/js/2.daae998b.chunk.js.map",
     "index.html": "/dosify/index.html",
-    "precache-manifest.1b8a5f7620de0a53355304f9244a11ec.js": "/dosify/precache-manifest.1b8a5f7620de0a53355304f9244a11ec.js",
+    "precache-manifest.1379ff2fdca9eb609c8e0dc1f564a3c1.js": "/dosify/precache-manifest.1379ff2fdca9eb609c8e0dc1f564a3c1.js",
     "service-worker.js": "/dosify/service-worker.js",
     "static/css/2.3a030ef9.chunk.css.map": "/dosify/static/css/2.3a030ef9.chunk.css.map",
     "static/css/main.8a03d28b.chunk.css.map": "/dosify/static/css/main.8a03d28b.chunk.css.map"

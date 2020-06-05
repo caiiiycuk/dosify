@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f58d6a923e05f15fcb96a097384258ef",
+    "revision": "8b429bcd6291d3bd73a44ab334eb27cb",
     "url": "/dosify/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dosify/static/css/2.3a030ef9.chunk.css"
   },
   {
-    "revision": "a5ec0d33ff8d6fe614d8",
+    "revision": "c7c0e71b33377dabb29e",
     "url": "/dosify/static/css/main.8a03d28b.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/dosify/static/js/2.daae998b.chunk.js"
   },
   {
-    "revision": "a5ec0d33ff8d6fe614d8",
-    "url": "/dosify/static/js/main.00839487.chunk.js"
+    "revision": "c7c0e71b33377dabb29e",
+    "url": "/dosify/static/js/main.7cbaa902.chunk.js"
   },
   {
     "revision": "326b57147c6a4e56e538",
